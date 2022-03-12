@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  gateway:
+    image: cheeseocean/gateway
+    container_name: niot-gateway
+  search:
+    image: cheeseocean/search
+    container_name: niot-search
+  core:
+    image: cheeseocean/core
