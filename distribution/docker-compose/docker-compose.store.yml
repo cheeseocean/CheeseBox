@@ -7,6 +7,7 @@ services:
       - "6379:6379"
     volumes:
       - "./conf/redis.conf:/usr/local/etc/redis/redis.conf"
+      - "./data/redis:/data"
   es:
     image: elasticsearch:7.12.1
     container_name: cheese-es
@@ -15,6 +16,17 @@ services:
     ports:
       - "9200:9200"
       - "9300:9300"
+    volumes:
+      - "./data/es:/usr/share/elasticsearch/data"
+  mongo:
+    image: mongo:5
+    container_name: cheese-mongo
+    env_file:
+      - ./env/mongo.env
+    ports:
+      - "27017:27017"
+    volumes:
+      - "./data/mongo:/data/db"
   mysql-biz:
     image: mysql:8.0.16
     container_name: cheese-mysql-biz
@@ -22,6 +34,8 @@ services:
       - ./env/mysql-biz.env
     ports:
       - "3306:3306"
+    volumes:
+      - "./data/mysql-biz:/var/lib/mysql"
 networks:
   cheese-net:
     external: true
