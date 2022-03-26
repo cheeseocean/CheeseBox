@@ -1,22 +1,17 @@
 version: "3.9"
 services:
   nacos:
-    image: nacos/nacos-server:1.4.2
-    container_name: cheese-nacos
+    image: nacos/nacos-server:v2.0.4-slim
+    container_name: nacos
     env_file:
       - ./env/nacos.env
     ports:
       - "8848:8848"
       - "9848:9848"
-      - "9555:9555"
+      - "9849:9849"
     volumes:
-      - "./conf/nacos.properties:/home/nacos/init.d/custom.properties"
+      - "./conf/nacos.properties:/home/nacos/conf/application.properties"
     restart: always
-  mysql-nacos:
-    container_name: cheese-mysql-nacos
-    image: mysql:8.0.16
-    env_file:
-      - ./env/mysql-nacos.env
 networks:
-  qisee-net:
+  cheese-net:
     external: true

@@ -2,7 +2,7 @@ version: "3.9"
 services:
   redis:
     image: redis:6.2
-    container_name: cheese-redis
+    container_name: redis
     ports:
       - "6379:6379"
     volumes:
@@ -10,7 +10,7 @@ services:
       - "./data/redis:/data"
   es:
     image: elasticsearch:7.12.1
-    container_name: cheese-es
+    container_name: es
     env_file:
       - ./env/elasticsearch.env
     ports:
@@ -20,22 +20,23 @@ services:
       - "./data/es:/usr/share/elasticsearch/data"
   mongo:
     image: mongo:5
-    container_name: cheese-mongo
+    container_name: mongo
     env_file:
       - ./env/mongo.env
     ports:
       - "27017:27017"
     volumes:
       - "./data/mongo:/data/db"
-  mysql-biz:
+  mysql:
     image: mysql:8.0.16
-    container_name: cheese-mysql-biz
+    container_name: mysql
     env_file:
-      - ./env/mysql-biz.env
+      - ./env/mysql.env
     ports:
       - "3306:3306"
     volumes:
-      - "./data/mysql-biz:/var/lib/mysql"
+      - "./data/mysql:/var/lib/mysql"
+      - "./init:/docker-entrypoint-initdb.d"
 networks:
   cheese-net:
     external: true
