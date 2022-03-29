@@ -8,3 +8,7 @@ services:
     container_name: niot-search
   core:
     image: cheeseocean/core
+networks:
+  default:
+    external:
+      name: cheese-net

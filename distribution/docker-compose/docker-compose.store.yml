@@ -38,5 +38,6 @@ services:
       - "./data/mysql:/var/lib/mysql"
       - "./init:/docker-entrypoint-initdb.d"
 networks:
-  cheese-net:
-    external: true
+  default:
+    external:
+      name: cheese-net

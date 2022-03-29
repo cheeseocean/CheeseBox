@@ -13,5 +13,6 @@ services:
       - "./conf/nacos.properties:/home/nacos/conf/application.properties"
     restart: always
 networks:
-  cheese-net:
-    external: true
+  default:
+    external:
+      name: cheese-net

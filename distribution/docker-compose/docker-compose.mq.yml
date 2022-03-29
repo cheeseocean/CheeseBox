@@ -3,3 +3,7 @@ services:
   rocketmq:
     image: apache/rocketmq
     container_name: rocketmq
+networks:
+  default:
+    external:
+      name: cheese-net
